@@ -59,3 +59,46 @@ footer {
     font-size: 0.8rem;
     color: #888;
 }
+
+/* Make all images scale properly on phones */
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+  }
+  
+  /* Optional: Add padding to the body so content doesn't touch screen edges */
+  body {
+    padding: 10px;
+  }
+  
+  /* Make text more readable on smaller screens */
+  @media screen and (max-width: 600px) {
+    body {
+      font-size: 16px;
+    }
+  
+    header, h1, h2 {
+      text-align: center;
+    }
+  }
+
+  button {
+    width: 100%; /* Makes the button fill screen on phones */
+    max-width: 300px; /* Keeps it from being too wide on big screens */
+    padding: 14px 20px; /* Makes it easy to tap */
+    font-size: 16px; /* Readable on small screens */
+    color: white; /* Text color */
+    border: none; /* No default border */
+    border-radius: 8px; /* Rounded corners */
+    display: block; /* So margin auto centers it */
+    margin: 15px auto; /* Centered with space around */
+    cursor: pointer; /* Pointer on hover */
+    text-align: center; /* Text stays centered */
+    transition: background-color 0.3s ease; /* Smooth hover effect */
+  }
+  
+  button:hover {
+    background-color: #e63939; /* Slightly darker on hover */
+  }
