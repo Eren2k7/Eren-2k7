@@ -12,6 +12,7 @@ body {
     color: #333;
     line-height: 1.6;
     padding: 20px;
+    text-align: center; /* Use center instead of 'centre' */
 }
 
 /* Header Styles */
@@ -24,6 +25,7 @@ header {
 
 h1 {
     font-size: 2.5rem;
+    color: red;
 }
 
 /* Main Content Styles */
@@ -37,6 +39,14 @@ p {
     margin-bottom: 20px;
 }
 
+/* List Styling */
+ul {
+    font-size: 30px;
+    list-style-type: disc;
+    padding-left: 1.5em;
+    margin-bottom: 20px;
+}
+
 /* Button Styling */
 button {
     background-color: #008CBA;
@@ -46,10 +56,36 @@ button {
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    margin: 5px 0;
 }
 
 button:hover {
     background-color: #005f73;
+}
+
+/* Button Images */
+button img {
+    width: 150px;
+    height: 150px;
+    max-width: 90vw;
+    max-height: 40vw;
+}
+
+/* General Images */
+img {
+    max-width: 100%;
+    height: auto;
+    border: 5px solid black;
+    border-radius: 10px;
+    display: block;
+    margin: 0 auto 20px auto;
+}
+
+/* Video Styles */
+video {
+    width: 100%;
+    height: auto;
+    margin-bottom: 20px;
 }
 
 /* Footer Styles */
@@ -60,45 +96,30 @@ footer {
     color: #888;
 }
 
-/* Make all images scale properly on phones */
-img {
-    max-width: 100%;
-    height: auto;
-    display: block;
-    margin: 0 auto;
-  }
-  
-  /* Optional: Add padding to the body so content doesn't touch screen edges */
-  body {
-    padding: 10px;
-  }
-  
-  /* Make text more readable on smaller screens */
-  @media screen and (max-width: 600px) {
+/* Responsive Design for Mobile Devices */
+@media (max-width: 600px) {
+    h1 {
+        font-size: 1.5rem;
+    }
+    ul {
+        font-size: 1rem;
+        padding-left: 1.2em;
+    }
+    button {
+        font-size: 0.9rem;
+        padding: 8px 14px;
+    }
+    button img {
+        width: 60px;
+        height: 60px;
+        max-width: 30vw;
+        max-height: 20vw;
+    }
+    img {
+        max-width: 100%;
+        height: auto;
+    }
     body {
-      font-size: 16px;
+        padding: 10px;
     }
-  
-    header, h1, h2 {
-      text-align: center;
-    }
-  }
-
-  button {
-    width: 100%; /* Makes the button fill screen on phones */
-    max-width: 300px; /* Keeps it from being too wide on big screens */
-    padding: 14px 20px; /* Makes it easy to tap */
-    font-size: 16px; /* Readable on small screens */
-    color: white; /* Text color */
-    border: none; /* No default border */
-    border-radius: 8px; /* Rounded corners */
-    display: block; /* So margin auto centers it */
-    margin: 15px auto; /* Centered with space around */
-    cursor: pointer; /* Pointer on hover */
-    text-align: center; /* Text stays centered */
-    transition: background-color 0.3s ease; /* Smooth hover effect */
-  }
-  
-  button:hover {
-    background-color: #e63939; /* Slightly darker on hover */
-  }
+}
