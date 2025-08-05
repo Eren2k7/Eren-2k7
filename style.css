@@ -122,4 +122,68 @@ footer {
     body {
         padding: 10px;
     }
+	body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  margin: 0;
+  padding: 20px;
+}
+	body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  margin: 0;
+  padding: 20px;
+}
+
+.spotify-thumbnail {
+  display: flex;
+  align-items: center;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  overflow: hidden;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.thumbnail-image {
+  width: 100px;
+  height: 100px;
+  flex-shrink: 0;
+  background-size: cover;
+  background-position: center;
+}
+
+.thumbnail-info {
+  flex: 1;
+  padding: 10px 15px;
+}
+
+.thumbnail-info h3 {
+  margin: 0;
+  font-size: 16px;
+}
+
+.thumbnail-info p {
+  margin: 5px 0;
+  font-size: 14px;
+  color: #666;
+}
+
+.thumbnail-player iframe {
+  border: none;
+  width: 100%;
+  height: 80px;
+}
+
+@media (max-width: 500px) {
+  .spotify-thumbnail {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .thumbnail-image {
+    width: 100%;
+    height: 200px;
+  }
+}
 }
