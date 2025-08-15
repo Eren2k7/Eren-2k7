@@ -1,9 +1,168 @@
 <!doctype html>
-<html>
+<html lang="en"></html>
 <head>
 <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="icon" type="image/png" href="logo.fw.png">
+    <link rel="icon" type="image/png" href="logo.fw.png">
+<!-- Sidebar Toggle Button -->
+<button id="sidebar-toggle" style="position:fixed; top:20px; left:20px; z-index:1000;">
+    ☰ Menu
+  </button>
+  
+  <!-- Sidebar -->
+  <div id="sidebar" style="
+    height: 100%;
+    width: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #222;
+    overflow-x: hidden;
+    transition: 0.3s;
+    padding-top: 60px;
+    color: white;
+    z-index: 999;
+  ">
+    <a href="javascript:void(0)" id="close-sidebar" style="
+      position: absolute;
+      top: 20px;
+      right: 25px;
+      font-size: 36px;
+      color: white;
+      text-decoration: none;
+    ">&times;</a>
+  
+    <div style="padding: 20px;">
+      <h2>Account Menu</h2>
+  
+      <!-- Home Button -->
+      <button id="home-btn" style="
+        padding: 10px 15px;
+        margin-top: 10px;
+        width: 100%;
+        background-color: #4CAF50;
+        border: none;
+        color: white;
+        cursor: pointer;
+      ">Home</button>
+  
+      <!-- Logout Button -->
+      <button id="logout-btn" style="
+        padding: 10px 15px;
+        margin-top: 10px;
+        width: 100%;
+        background-color: #f39c12;
+        border: none;
+        color: white;
+        cursor: pointer;
+      ">Logout</button>
+  
+      <!-- Delete Account Button -->
+      <button id="delete-account-btn" style="
+        padding: 10px 15px;
+        margin-top: 10px;
+        width: 100%;
+        background-color: red;
+        border: none;
+        color: white;
+        cursor: pointer;
+      ">Delete Account</button>
+
+      <!-- Dark/Light Mode Toggle Button -->
+      <button id="toggle-theme-btn" style="
+        padding: 10px 15px;
+        margin-top: 10px;
+        width: 100%;
+        background-color: #555;
+        border: none;
+        color: white;
+        cursor: pointer;
+      ">Toggle Dark/Light Mode</button>
+    </div>
+  </div>
+  
+  <!-- EmailJS -->
+  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+  <script>
+    // ===== CONFIG =====
+    const EMAILJS_PUBLIC_KEY = "g5eE5Fb3bnnC1yfhy";
+    const EMAILJS_SERVICE_ID = "service_qg6ai4i";
+    const EMAILJS_TEMPLATE_ID = "template_z4iq4cf";
+    emailjs.init(EMAILJS_PUBLIC_KEY);
+  
+    // Sidebar toggle
+    document.getElementById("sidebar-toggle").addEventListener("click", () => {
+      document.getElementById("sidebar").style.width = "250px";
+    });
+    document.getElementById("close-sidebar").addEventListener("click", () => {
+      document.getElementById("sidebar").style.width = "0";
+    });
+  
+    // Home button
+    document.getElementById("home-btn").addEventListener("click", () => {
+      window.location.href = "eren backup.html"; // Replace with your home/main page
+    });
+  
+    // Logout button
+    document.getElementById("logout-btn").addEventListener("click", () => {
+      localStorage.removeItem("loggedInUser");
+      alert("Logged out successfully!");
+      window.location.href = "log in.html"; // Replace with your login/signup page
+    });
+  
+    // Delete account button with OTP
+    document.getElementById("delete-account-btn").addEventListener("click", async function () {
+      const loggedInUser = (localStorage.getItem("loggedInUser") || "").trim().toLowerCase();
+      if (!loggedInUser) {
+        alert("You are not logged in.");
+        window.location.href = "log in.html";
+        return;
+      }
+  
+      const users = JSON.parse(localStorage.getItem("users") || "{}");
+      if (!users[loggedInUser]) {
+        alert("No account found.");
+        return;
+      }
+  
+      const deleteCode = Math.floor(100000 + Math.random() * 900000).toString();
+      sessionStorage.setItem("deleteCode", deleteCode);
+      sessionStorage.setItem("deleteEmail", loggedInUser);
+  
+      try {
+        await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
+          email: loggedInUser,
+          passcode: deleteCode
+        });
+  
+        const entered = prompt("An OTP was sent to your email. Enter it here to confirm deletion:");
+        if (entered && entered.trim() === deleteCode) {
+          delete users[loggedInUser];
+          localStorage.setItem("users", JSON.stringify(users));
+          localStorage.removeItem("loggedInUser");
+          alert("Account deleted successfully.");
+          window.location.href = "index.html";
+        } else {
+          alert("Invalid OTP. Account not deleted.");
+        }
+      } catch (err) {
+        alert("Failed to send email: " + JSON.stringify(err));
+      }
+    });
+
+    // Dark/Light Mode Toggle
+    const toggleThemeBtn = document.getElementById("toggle-theme-btn");
+    toggleThemeBtn.addEventListener("click", () => {
+      const body = document.body;
+      if (body.style.backgroundColor === "black") {
+        body.style.backgroundColor = "white";
+        body.style.color = "black";
+      } else {
+        body.style.backgroundColor = "black";
+        body.style.color = "white";
+      }
+    });
+  </script> 
 <title>PREMIUM HACK</title>
 </head>
     <link rel="stylesheet" href="style.css">
@@ -212,4 +371,3 @@ function confirmDownload() {
 <script src="script.js"></script>
 </body>
 </html>
-
