@@ -89,6 +89,28 @@
 </head>
 <body>
 
+<div>Total Visitors: <span id="visitor-count">Loading...</span></div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const counter = new Counter({
+      workspace: "eren-1",            // Replace with your actual workspace name
+      accessToken: "ut_khw3vrLRh6uO9TtSIQcLtLJ05bfELX2sxgZ6Y1f1" // Your shared API token
+    });
+
+    // Increment and retrieve the counter
+    counter.up("page-views")  // Replace with your counter name
+      .then(result => {
+        document.getElementById("visitor-count").textContent = result.value;
+      })
+      .catch(err => {
+        console.error("CounterAPI error:", err);
+        document.getElementById("visitor-count").textContent = "Error";
+      });
+  });
+</script>
+
+
 <h1>Welcome</h1>
 
 <!-- Sign Up Form -->
